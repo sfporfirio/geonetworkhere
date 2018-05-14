@@ -20,6 +20,7 @@ RUN curl -fSL -o $GN_FILE \
 COPY ./docker-entrypoint.sh /entrypoint.sh
 
 ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT ["sh", "/entrypoint.sh"]
 
 RUN ["chmod", "+x", "/docker-entrypoint.sh"]
 
