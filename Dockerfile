@@ -17,7 +17,7 @@ RUN curl -fSL -o $GN_FILE \
      rm $GN_FILE
 
 #Set geonetwork data dir
-COPY ./docker-entrypoint.sh /entrypoint.sh
+COPY ./entrypoint.sh /entrypoint.sh
 
 ENTRYPOINT ["sh", "/entrypoint.sh"]
 
