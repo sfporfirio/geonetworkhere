@@ -12,13 +12,15 @@ WORKDIR $CATALINA_HOME/webapps
 
 RUN curl -fSL -o $GN_FILE \
      https://sourceforge.net/projects/geonetwork/files/GeoNetwork_opensource/v${GN_VERSION}/geonetwork.war/download && \
+     echo "$GN_DOWNLOAD_MD5 *$GN_FILE" | md5sum -c && \
      mkdir -p geonetwork && \
      unzip -e $GN_FILE -d geonetwork && \
      rm $GN_FILE
 
 #Set geonetwork data dir
-COPY ./entrypoint.sh /entrypoint.sh
 
-ENTRYPOINT ["sh", "/entrypoint.sh"]
+COPY ./docker-entrypoint.sh /entrypoint.sh
+
+ENTRYPOINT ["/entrypoint.sh"]
 
 CMD ["catalina.sh", "run"]
